@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          load app to azure web app
+          load app to azure web app through cicd
         </a>
       </header>
     </div>
