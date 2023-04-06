@@ -22,5 +22,4 @@ jobs:
         with:
           cmd: deploy
           env: |
-            DENOTIFY_KEY=${{ secrets.DENOTIFY_KEY }}
             DENO_DEPLOY_TOKEN=${{ secrets.DENO_DEPLOY_TOKEN }}
