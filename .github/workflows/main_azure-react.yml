@@ -1,25 +1,22 @@
-name: Deploy to Deno
-
-on:
-  push:
-    branches:
-      - main
+name: Deploy
+on: [push]
 
 jobs:
-  build-and-deploy:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      id-token: ddp_1yTxtiL9vY4UQcvLOTl43psiFOLwFP02UDqW # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Clone repository
+        uses: actions/checkout@v3
 
-      - name: Install dependencies and build
-        run: |
-          npm install
-          npm run build
+      # TODO: add a build step here
 
-      - name: Deploy to Deno
-        uses: denoland/deno-action@v2
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
         with:
-          cmd: deploy
-          env: 
-            DENO_DEPLOY_TOKEN=${{ secrets.DENO_DEPLOY_TOKEN }}
+          project: "deep-fox-11"
+          entrypoint: "./main.ts" # TODO: update entrypoint
